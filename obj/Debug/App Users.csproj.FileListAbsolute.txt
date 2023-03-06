@@ -1,0 +1,17 @@
+C:\Users\19176\source\repos\App Users\bin\Debug\App Users.exe.config
+C:\Users\19176\source\repos\App Users\bin\Debug\App Users.exe
+C:\Users\19176\source\repos\App Users\bin\Debug\App Users.pdb
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.csproj.AssemblyReference.cache
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.csproj.SuggestedBindingRedirects.cache
+C:\Users\19176\source\repos\App Users\obj\Debug\App_Users.Properties.Resources.resources
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.csproj.GenerateResource.cache
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.csproj.CoreCompileInputs.cache
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.exe
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.pdb
+C:\Users\19176\source\repos\App Users\obj\Debug\App_Users.frmAppUsers.resources
+C:\Users\19176\source\repos\App Users\obj\Debug\App_Users.ucDashboardPage.resources
+C:\Users\19176\source\repos\App Users\obj\Debug\App_Users.ucUserProfile.resources
+C:\Users\19176\source\repos\App Users\bin\Debug\Newtonsoft.Json.dll
+C:\Users\19176\source\repos\App Users\bin\Debug\Newtonsoft.Json.xml
+C:\Users\19176\source\repos\App Users\obj\Debug\App Users.csproj.CopyComplete
+C:\Users\19176\source\repos\App Users\obj\Debug\App_Users.Form2.resources
