@@ -46,11 +46,11 @@ namespace App_Users
             TimeSpan difference = nextBirthday - DateTime.Today;
 
             label1.Text = difference.TotalDays + " days to birthday";
-            if (difference.TotalDays <= 100)
+            if (difference.TotalDays <= 1)
             {
                 label1.Text = difference.TotalHours + " Hours to birthdat";
             }
-            if (difference.TotalHours <= 1500)
+            if (difference.TotalHours <= 1)
             {
                 label1.Text = difference.TotalHours + " Minutes to birthdat";
             }
