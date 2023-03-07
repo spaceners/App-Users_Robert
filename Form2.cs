@@ -13,7 +13,6 @@ namespace App_Users
     public partial class Form2 : Form
     {
         DateTime birthDate;
-        double totalSeconds;
         public Form2()
         {
             InitializeComponent();
@@ -32,14 +31,7 @@ namespace App_Users
             textEmail.Text = item.email;
             textDOB.Text = string.Format("{0:dd/MMMM/yyyy}", item.dob.date);
             textPhoneNumber.Text = item.phone;
-            if (DateTime.TryParse(string.Format("{0:dd/MMMM/yyyy}", item.dob.date), out birthDate))
-            {
-                TimeSpan timeDiff = DateTime.Now - birthDate;
-                totalSeconds = timeDiff.TotalSeconds;
-            }
-
-            TimeSpan month = TimeSpan.FromSeconds(totalSeconds);
-
+            DateTime.TryParse(string.Format("{0:dd/MMMM/yyyy}", item.dob.date), out birthDate);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,18 +40,26 @@ namespace App_Users
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            
+            DateTime today = DateTime.Today;
+            DateTime nextBirthday = birthDate.AddYears(CalculateAge() + 1);
+
+            TimeSpan difference = nextBirthday - DateTime.Today;
+
+            label1.Text = Convert.ToString(difference.TotalDays) + " days to birthday";
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public int CalculateAge()
         {
-            if (totalSeconds > 0)
-            {
-                totalSeconds--;
-                TimeSpan month = TimeSpan.FromSeconds(totalSeconds);
+            DateTime today = DateTime.Today;
+            int age = today.Year - birthDate.Year;
+            if (today < birthDate.AddYears(age))
+                age--;
+            return age;
+        }
 
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
 
-            }
         }
     }
 }

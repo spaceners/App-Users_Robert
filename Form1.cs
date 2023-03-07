@@ -17,10 +17,14 @@ namespace App_Users
 {
     public partial class frmAppUsers : Form
     {
+        Form2 userDetails = new Form2();
         private static string userList;
         private BindingSource userListBindingSouce = new BindingSource();
         static List<String> userNames = new List<String>();
         private int page = 1;
+        private int limit = 100;
+        private dynamic recentlyViewed;
+
 
         public frmAppUsers()
         {
@@ -29,13 +33,18 @@ namespace App_Users
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (recentlyViewed == null)
+            {
+                btnRecentlyViewed.Enabled = false;
+            }
+       
             ucUserProfile1.Show();
         }
         
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             ucUserProfile1.Hide();
-            string endpoint = "https://randomuser.me/api/?page=" + page + "&results=10&seed=abc";
+            string endpoint = "https://randomuser.me/api/?page=" + page + "&results="+ limit+"&seed=abc";
             displayUsers(formatResponse(endpoint));
         }
 
@@ -51,17 +60,22 @@ namespace App_Users
 
         private void displayUsers(dynamic reader)
         {
+            userNames.Clear();
             foreach (var user in reader["results"])
             {
                 string name = user["name"]["first"] + " " + user["name"]["last"];
                 userNames.Add(name);
-
+            }
+            if (userNames.Count < limit)
+            {
+                btnNext.Enabled = false;  
+            }
+            else
+            {
+                btnNext.Enabled = true;
             }
 
-            userListBindingSouce.DataSource = userNames;
-
-            listBox1.DataSource = userListBindingSouce;
-            userListBindingSouce.ResetBindings(false);
+            processDataBinding();
         }
 
         public string get(string endpoint)
@@ -82,6 +96,10 @@ namespace App_Users
             ucUserProfile1.BringToFront();
         }
 
+
+        /*
+         Search button Function
+        */
         private void button3_Click(object sender, EventArgs e)
         {
             userNames.Clear();
@@ -100,11 +118,8 @@ namespace App_Users
                         userNames.Add(name);
                     }
                 }
-                userListBindingSouce.DataSource = userNames;
 
-                listBox1.DataSource = userListBindingSouce;
-                userListBindingSouce.ResetBindings(false);
-                
+                processDataBinding();
             }
         }
 
@@ -112,7 +127,6 @@ namespace App_Users
         {
             int index = listBox1.SelectedIndex;
             dynamic users = JsonConvert.DeserializeObject<dynamic>(userList);
-            Form2 userDetails = new Form2();
             if (users["results"].Count >= 1)
             {
                 foreach (var item in users["results"])
@@ -120,10 +134,15 @@ namespace App_Users
                     string name = item["name"]["first"] + " " + item["name"]["last"];
                     if (name.ToLower() == userNames[index].ToLower())
                     {
+                        recentlyViewed = item;
                         userDetails.receiveDetails(item);
                         userDetails.ShowDialog(); 
                     }
                 }
+            }
+            if (recentlyViewed != null)
+            {
+                btnRecentlyViewed.Enabled = true; 
             }
         }
 
@@ -136,21 +155,39 @@ namespace App_Users
         {
             userNames.Clear();
             page++;
-            string endpoint = "https://randomuser.me/api/?page=" + page + "&results=10&seed=abc";
+            string endpoint = "https://randomuser.me/api/?page=" + page + "&results="+ limit +"& seed=abc";
             displayUsers(formatResponse(endpoint));
+            if (page == 2)
+            {
+                btnPrevious.Enabled = true;
+            }
         }
 
         private void btnPrevious_Click(object sender, EventArgs e)
         {
-
-            if (page > 1)
+            userNames.Clear();
+            page--;
+            string endpoint = "https://randomuser.me/api/?page=" + page + "&results="+ limit +"& seed=abc";
+            displayUsers(formatResponse(endpoint));
+            if(page <= 1)
             {
-                userNames.Clear();
-                page--;
-                string endpoint = "https://randomuser.me/api/?page=" + page + "&results=10&seed=abc";
-                displayUsers(formatResponse(endpoint));
+                btnPrevious.Enabled = false;
             }
            
+        }
+
+        private void btnRecentlyViewed_Click(object sender, EventArgs e)
+        {        
+            userDetails.receiveDetails(recentlyViewed);
+            userDetails.ShowDialog();
+        }
+
+        private void processDataBinding()
+        {
+            userListBindingSouce.DataSource = userNames;
+
+            listBox1.DataSource = userListBindingSouce;
+            userListBindingSouce.ResetBindings(false);
         }
     }
 }

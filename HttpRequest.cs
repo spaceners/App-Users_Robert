@@ -2,6 +2,7 @@
 using System.IO;
 using System.Net;
 using System.Text;
+using System.Windows.Forms;
 
 namespace App_Users
 {
@@ -37,10 +38,9 @@ namespace App_Users
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-
-                throw;
+                MessageBox.Show(e.Message);
             }
 
             return response; 

@@ -75,6 +75,7 @@
             this.btnRecentlyViewed.TabIndex = 2;
             this.btnRecentlyViewed.Text = "Recent";
             this.btnRecentlyViewed.UseVisualStyleBackColor = false;
+            this.btnRecentlyViewed.Click += new System.EventHandler(this.btnRecentlyViewed_Click);
             // 
             // btnDashboard
             // 
@@ -137,10 +138,10 @@
             // 
             // textSearch
             // 
-            this.textSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textSearch.Location = new System.Drawing.Point(355, 34);
+            this.textSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textSearch.Location = new System.Drawing.Point(356, 29);
             this.textSearch.Name = "textSearch";
-            this.textSearch.Size = new System.Drawing.Size(170, 24);
+            this.textSearch.Size = new System.Drawing.Size(213, 30);
             this.textSearch.TabIndex = 5;
             // 
             // ucUserProfile1
@@ -149,9 +150,9 @@
             this.ucUserProfile1.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.ucUserProfile1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ucUserProfile1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucUserProfile1.Location = new System.Drawing.Point(200, 0);
+            this.ucUserProfile1.Location = new System.Drawing.Point(250, 0);
             this.ucUserProfile1.Name = "ucUserProfile1";
-            this.ucUserProfile1.Size = new System.Drawing.Size(812, 542);
+            this.ucUserProfile1.Size = new System.Drawing.Size(1015, 678);
             this.ucUserProfile1.TabIndex = 1;
             this.ucUserProfile1.Load += new System.EventHandler(this.ucUserProfile1_Load);
             // 
